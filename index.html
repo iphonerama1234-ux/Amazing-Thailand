@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazing Thailand | 1 ภาค 1 จังหวัด ไม่ไปไม่รู้</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts: Prompt -->
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/png" href="images/icon.png">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        pastel: {
+                            yellow: '#FFF9C4',   /* เหลืองนวล */
+                            peach: '#FFE0B2',    /* ส้มพาสเทลอ่อน */
+                            pink: '#F8BBD0',     /* ชมพูพาสเทล */
+                            lavender: '#E1BEE7', /* ม่วงพาสเทล */
+                            purple: '#D1C4E9',   /* ม่วงลาเวนเดอร์ */
+                            softblue: '#BBDEFB', /* ฟ้าอ่อน */
+                            sky: '#B3E5FC',      /* ท้องฟ้าพาสเทล */
+                            mint: '#B2DFDB',     /* เขียวมินต์พาสเทล */
+                            green: '#C8E6C9',    /* เขียวอ่อนธรรมชาติ */
+                        },
+                        brand: {
+                            text: '#3A3859',
+                            darkText: '#232136'
+                        }
+                    },
+                    fontFamily: {
+                        prompt: ['Prompt', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            font-family: 'Prompt', sans-serif; 
+            background: linear-gradient(135deg, #FFF9C4 0%, #FFE0B2 15%, #F8BBD0 35%, #E1BEE7 55%, #BBDEFB 75%, #B2DFDB 90%, #C8E6C9 100%);
+            background-attachment: fixed;
+            color: #3A3859;
+        }
+        .dark body {
+            background: linear-gradient(135deg, #181623 0%, #221F3B 35%, #192738 70%, #152A2A 100%);
+            background-attachment: fixed;
+            color: #E2E8F0;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+        }
+        .dark .glass-card {
+            background: rgba(30, 32, 48, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .pastel-rainbow-text {
+            background: linear-gradient(90deg, #E91E63, #9C27B0, #3F51B5, #0288D1, #00897B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .dark .pastel-rainbow-text {
+            background: linear-gradient(90deg, #F8BBD0, #E1BEE7, #BBDEFB, #B3E5FC, #B2DFDB);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .tab-active {
+            border-bottom: 3px solid #AB47BC;
+            color: #8E24AA;
+            font-weight: 700;
+        }
+        .dark .tab-active {
+            border-bottom: 3px solid #E1BEE7;
+            color: #E1BEE7;
+        }
+        /* Custom Pastel Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #FFE0B2; }
+        ::-webkit-scrollbar-thumb { background: #AB47BC; border-radius: 4px; }
+    </style>
+</head>
+<body class="transition-colors duration-300 min-h-screen flex flex-col">
+
+    <header class="sticky top-0 z-50 glass-card transition-colors shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-pastel-pink via-pastel-lavender to-pastel-sky flex items-center justify-center text-purple-800 shadow-md group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-plane-departure text-2xl"></i>
+                </div>
+                <div>
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-purple-600 dark:text-purple-300 block">Amazing Thailand</span>
+                    <span class="text-xl sm:text-2xl font-black pastel-rainbow-text">1 ภาค 1 จังหวัด ไม่ไปไม่รู้</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 font-semibold text-sm text-slate-700 dark:text-slate-200">
+                <a href="#hero" class="hover:text-purple-600 dark:hover:text-purple-300 transition">หน้าแรก</a>
+                <a href="#provinces" class="hover:text-purple-600 dark:hover:text-purple-300 transition">6 จังหวัดตัวแทนภาค</a>
+                <a href="#highlights" class="hover:text-purple-600 dark:hover:text-purple-300 transition">จุดเด่นโครงการ</a>
+            </nav>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-3">
+                <!-- Theme Toggle Button -->
+                <button id="themeToggle" class="p-2.5 rounded-2xl bg-white/70 dark:bg-slate-800/70 text-slate-700 dark:text-slate-200 hover:bg-white dark:hover:bg-slate-700 transition shadow-sm" title="เปลี่ยนธีม">
+                    <i class="fa-solid fa-moon dark:hidden text-purple-600"></i>
+                    <i class="fa-solid fa-sun hidden dark:block text-amber-300"></i>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden p-2.5 rounded-2xl bg-white/70 dark:bg-slate-800/70 text-slate-700 dark:text-slate-200">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-purple-100 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 px-4 py-4 space-y-3">
+            <a href="#hero" class="block py-2 text-slate-700 dark:text-slate-200 font-medium">หน้าแรก</a>
+            <a href="#provinces" class="block py-2 text-purple-600 dark:text-purple-300 font-bold">6 จังหวัดตัวแทนภาค</a>
+            <a href="#highlights" class="block py-2 text-slate-700 dark:text-slate-200 font-medium">จุดเด่นโครงการ</a>
+        </div>
+    </header>
+
+    <section id="hero" class="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div class="max-w-5xl mx-auto text-center space-y-6 relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 dark:bg-slate-800/80 shadow-sm text-purple-800 dark:text-purple-300 text-xs sm:text-sm font-bold animate-bounce">
+                <i class="fa-solid fa-heart text-pink-400"></i> มหัศจรรย์เมืองไทย สัมผัสได้ครบ 6 ภาค
+            </div>
+            <h1 class="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight leading-tight">
+                เปิดประตูสู่เอกลักษณ์ไทย <br/>
+                <span class="pastel-rainbow-text text-4xl sm:text-6xl md:text-7xl">
+                    1 ภาค 1 จังหวัด ไม่ไปไม่รู้
+                </span>
+            </h1>
+            <p class="text-sm sm:text-lg text-slate-700 dark:text-slate-300 font-medium max-w-3xl mx-auto leading-relaxed bg-white/60 dark:bg-slate-900/60 p-4 sm:p-5 rounded-3xl backdrop-blur-sm border border-white/80 dark:border-slate-800">
+                รวบรวมสุดยอดจังหวัดตัวแทนจากครบทั้ง 6 ภูมิภาคทั่วประเทศ ครบครันด้วยเรื่องราว <span class="font-bold text-pink-600 dark:text-pink-300">"เที่ยว - กิน - นอน"</span> ที่คุณต้องหลงรัก
+            </p>
+
+            <!-- Quick Region Selector Buttons (Pastel Theme) -->
+            <div class="pt-4 flex flex-wrap justify-center gap-2 sm:gap-3 max-w-4xl mx-auto">
+                <button onclick="filterRegion('all')" class="region-filter-btn active bg-white dark:bg-slate-800 text-purple-700 dark:text-purple-300 font-bold px-4 py-2 sm:px-5 sm:py-2.5 rounded-2xl text-xs sm:text-sm transition shadow-md border border-purple-200 dark:border-slate-700">
+                    <i class="fa-solid fa-border-all mr-1 text-pink-400"></i> ทุกภาค
+                </button>
+                <button onclick="filterRegion('north')" class="region-filter-btn bg-pastel-yellow/80 hover:bg-pastel-yellow dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-medium px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-2xl text-xs sm:text-sm transition backdrop-blur-sm border border-amber-200 dark:border-slate-700">
+                    🏔️ เหนือ (เชียงใหม่)
+                </button>
+                <button onclick="filterRegion('isan')" class="region-filter-btn bg-pastel-peach/80 hover:bg-pastel-peach dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-medium px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-2xl text-xs sm:text-sm transition backdrop-blur-sm border border-orange-200 dark:border-slate-700">
+                    🌾 อีสาน (เลย)
+                </button>
+                <button onclick="filterRegion('central')" class="region-filter-btn bg-pastel-lavender/80 hover:bg-pastel-lavender dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-medium px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-2xl text-xs sm:text-sm transition backdrop-blur-sm border border-purple-200 dark:border-slate-700">
+                    🏛️ กลาง (อยุธยา)
+                </button>
+                <button onclick="filterRegion('east')" class="region-filter-btn bg-pastel-sky/80 hover:bg-pastel-sky dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-medium px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-2xl text-xs sm:text-sm transition backdrop-blur-sm border border-sky-200 dark:border-slate-700">
+                    🏝️ ตะวันออก (ตราด)
+                </button>
+                <button onclick="filterRegion('west')" class="region-filter-btn bg-pastel-mint/80 hover:bg-pastel-mint dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-medium px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-2xl text-xs sm:text-sm transition backdrop-blur-sm border border-teal-200 dark:border-slate-700">
+                    🚂 ตะวันตก (กาญจนบุรี)
+                </button>
+                <button onclick="filterRegion('south')" class="region-filter-btn bg-pastel-green/80 hover:bg-pastel-green dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-medium px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-2xl text-xs sm:text-sm transition backdrop-blur-sm border border-green-200 dark:border-slate-700">
+                    🌊 ใต้ (กระบี่)
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-2 relative z-20">
+        <div class="glass-card rounded-3xl shadow-lg p-4 sm:p-6 flex flex-col md:flex-row items-center justify-between gap-4">
+            <!-- Search Bar -->
+            <div class="relative w-full md:w-96">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-purple-400"></i>
+                <input type="text" id="searchInput" oninput="handleSearch()" placeholder="ค้นหาจังหวัด, สถานที่เที่ยว, เมนูเด็ด..." 
+                    class="w-full pl-11 pr-4 py-3 bg-white/90 dark:bg-slate-900/90 border border-purple-200 dark:border-slate-700 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-purple-400 dark:text-white transition shadow-inner">
+            </div>
+
+            <!-- Stats/Summary Badges -->
+            <div class="flex flex-wrap items-center justify-center gap-3 text-xs sm:text-sm font-semibold">
+                <span class="flex items-center gap-2 bg-pastel-pink/60 dark:bg-slate-800 px-3.5 py-2 rounded-xl border border-pink-200 dark:border-slate-700">
+                    <i class="fa-solid fa-map-pin text-pink-500"></i> 6 จังหวัดไฮไลท์
+                </span>
+                <span class="flex items-center gap-2 bg-pastel-lavender/60 dark:bg-slate-800 px-3.5 py-2 rounded-xl border border-purple-200 dark:border-slate-700">
+                    <i class="fa-solid fa-utensils text-purple-500"></i> 18+ เมนูท้องถิ่น
+                </span>
+                <span class="flex items-center gap-2 bg-pastel-mint/60 dark:bg-slate-800 px-3.5 py-2 rounded-xl border border-teal-200 dark:border-slate-700">
+                    <i class="fa-solid fa-hotel text-teal-600"></i> 18+ ที่พักสไตล์เก๋
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <main id="provinces" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-grow">
+        <div class="mb-8 text-center md:text-left flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-purple-200/60 dark:border-slate-800 pb-5">
+            <div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-800 dark:text-white">6 จังหวัดหมุดหมายประจำภาค</h2>
+                <p class="text-slate-600 dark:text-slate-400 mt-1 text-xs sm:text-sm">ค้นพบเสน่ห์ความงดงามและอัตลักษณ์อันประทับใจที่คุณไม่ควรพลาด</p>
+            </div>
+            <div id="resultCount" class="text-xs font-bold text-purple-700 dark:text-purple-300 bg-white/90 dark:bg-slate-800 px-4 py-2 rounded-xl border border-purple-200 dark:border-slate-700 shadow-sm self-center md:self-auto">
+                แสดงครบทั้ง 6 จังหวัด
+            </div>
+        </div>
+
+        <!-- Province Cards Grid -->
+        <div id="provinceGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Dynamic Content loaded via JS -->
+        </div>
+    </main>
+
+    <div id="detailModal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+        <div class="glass-card rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative transition-all my-auto border border-white dark:border-slate-700">
+            <!-- Modal Close Button -->
+            <button onclick="closeModal()" class="absolute top-4 right-4 z-20 bg-white/90 dark:bg-slate-800/90 hover:bg-white text-slate-700 dark:text-slate-200 w-10 h-10 rounded-full flex items-center justify-center shadow-md transition">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <!-- Modal Header Image -->
+            <div class="relative h-64 sm:h-80 w-full overflow-hidden">
+                <img id="modalImg" src="" alt="" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/800x600/FFE0B2/3A3859?text=Amazing+Thailand'">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+                <div class="absolute bottom-6 left-6 right-6 text-white">
+                    <span id="modalRegion" class="inline-block px-3 py-1 bg-pink-400 text-slate-900 font-bold text-xs rounded-lg uppercase tracking-wider mb-2 shadow-sm"></span>
+                    <h2 id="modalTitle" class="text-3xl sm:text-4xl font-extrabold"></h2>
+                    <p id="modalSlogan" class="text-pink-100 text-xs sm:text-sm italic mt-1 font-light"></p>
+                </div>
+            </div>
+
+            <!-- Modal Content Body -->
+            <div class="p-5 sm:p-8 space-y-6 sm:space-y-8">
+                <!-- Overview -->
+                <div class="bg-white/70 dark:bg-slate-800/70 p-5 rounded-2xl border border-purple-100 dark:border-slate-700">
+                    <h3 class="text-base sm:text-lg font-bold text-slate-800 dark:text-white flex items-center gap-2 mb-2">
+                        <i class="fa-solid fa-circle-info text-purple-500"></i> ข้อมูลเบื้องต้นเกี่ยวกับจังหวัด
+                    </h3>
+                    <p id="modalOverview" class="text-slate-600 dark:text-slate-300 leading-relaxed text-xs sm:text-sm"></p>
+                </div>
+
+                <!-- Tab Menu for เที่ยว / กิน / นอน -->
+                <div>
+                    <div class="flex border-b border-purple-200 dark:border-slate-700 gap-4 sm:gap-6 text-xs sm:text-sm font-medium">
+                        <button onclick="switchModalTab('attractions')" id="tab-attractions" class="tab-btn pb-3 tab-active transition flex items-center gap-2">
+                            <i class="fa-solid fa-compass text-pink-500"></i> สถานที่ท่องเที่ยว (เที่ยว)
+                        </button>
+                        <button onclick="switchModalTab('food')" id="tab-food" class="tab-btn pb-3 text-slate-500 dark:text-slate-400 transition flex items-center gap-2">
+                            <i class="fa-solid fa-utensils text-purple-500"></i> อาหารท้องถิ่น (กิน)
+                        </button>
+                        <button onclick="switchModalTab('stay')" id="tab-stay" class="tab-btn pb-3 text-slate-500 dark:text-slate-400 transition flex items-center gap-2">
+                            <i class="fa-solid fa-hotel text-teal-500"></i> ที่พักแนะนำ (นอน)
+                        </button>
+                    </div>
+
+                    <!-- Tab Contents -->
+                    <div class="py-6">
+                        <!-- Attractions Content -->
+                        <div id="content-attractions" class="tab-content grid grid-cols-1 sm:grid-cols-3 gap-4"></div>
+                        <!-- Food Content -->
+                        <div id="content-food" class="tab-content hidden grid grid-cols-1 sm:grid-cols-3 gap-4"></div>
+                        <!-- Stay Content -->
+                        <div id="content-stay" class="tab-content hidden grid grid-cols-1 sm:grid-cols-3 gap-4"></div>
+                    </div>
+                </div>
+
+                <!-- Travel Tips / Highlights -->
+                <div class="bg-pastel-yellow/70 dark:bg-slate-800/80 p-5 rounded-2xl border border-amber-200 dark:border-slate-700 flex items-start gap-4">
+                    <div class="p-3 bg-amber-300 dark:bg-amber-500 text-amber-900 dark:text-slate-900 rounded-xl font-bold">
+                        <i class="fa-regular fa-lightbulb text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 dark:text-white text-xs sm:text-sm">ข้อแนะนำการเดินทางเพิ่มเติม</h4>
+                        <p id="modalTips" class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1"></p>
+                    </div>
+                </div>
+
+                <!-- Modal Action Buttons -->
+                <div class="flex justify-end pt-2">
+                    <button onclick="closeModal()" class="bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold py-2.5 px-6 rounded-2xl text-xs sm:text-sm transition">
+                        ปิดหน้าต่าง
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="highlights" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 mb-8">
+        <div class="glass-card rounded-3xl p-6 sm:p-8 border border-white dark:border-slate-800 shadow-xl relative overflow-hidden">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 text-center">
+                <div class="space-y-3 p-5 bg-white/60 dark:bg-slate-800/60 rounded-2xl border border-pink-100 dark:border-slate-700">
+                    <div class="w-12 h-12 mx-auto rounded-2xl bg-pastel-pink text-pink-700 flex items-center justify-center text-xl shadow-sm">
+                        <i class="fa-solid fa-camera"></i>
+                    </div>
+                    <h3 class="font-bold text-base sm:text-lg text-slate-800 dark:text-white">มุมถ่ายรูปสุด Unseen</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-300">คัดสรรแลนด์มาร์กเด็ด บรรยากาศสวยตระการตา ให้คุณถ่ายภาพแห่งความทรงจำได้ไม่รู้ลืม</p>
+                </div>
+                <div class="space-y-3 p-5 bg-white/60 dark:bg-slate-800/60 rounded-2xl border border-purple-100 dark:border-slate-700">
+                    <div class="w-12 h-12 mx-auto rounded-2xl bg-pastel-lavender text-purple-700 flex items-center justify-center text-xl shadow-sm">
+                        <i class="fa-solid fa-bowl-food"></i>
+                    </div>
+                    <h3 class="font-bold text-base sm:text-lg text-slate-800 dark:text-white">รสชาติแท้ต้นตำรับ</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-300">สัมผัสเสน่ห์เมนูประจำถิ่น วัตถุดิบสดใหม่ และเอกลักษณ์รสชาติท้องถิ่นที่ต้องไปชิมด้วยตัวเอง</p>
+                </div>
+                <div class="space-y-3 p-5 bg-white/60 dark:bg-slate-800/60 rounded-2xl border border-teal-100 dark:border-slate-700">
+                    <div class="w-12 h-12 mx-auto rounded-2xl bg-pastel-mint text-teal-700 flex items-center justify-center text-xl shadow-sm">
+                        <i class="fa-solid fa-bed"></i>
+                    </div>
+                    <h3 class="font-bold text-base sm:text-lg text-slate-800 dark:text-white">ที่พักผ่อนเอนกาย</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-300">รีสอร์ตธรรมชาติ โฮมสเตย์ชุมชน และที่พักเก๋ๆ หลากหลายสไตล์เพื่อการพักผ่อนอย่างแท้จริง</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900/90 text-slate-400 py-8 border-t border-slate-800 text-xs sm:text-sm mt-auto backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div>
+                <p class="text-white font-semibold">Amazing Thailand - 1 ภาค 1 จังหวัด ไม่ไปไม่รู้</p>
+                <p class="text-xs text-slate-400 mt-1">เว็บไซต์ประชาสัมพันธ์การท่องเที่ยวไทย ครบครัน 6 ภูมิภาค</p>
+            </div>
+            <div class="text-xs text-slate-400">
+                &copy; Natwara s6952D10029
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Full Tourism Dataset featuring 6 Provinces from 6 Regions with complete Attractions, Food, and Stays
+        const provincesData = [
+            {
+                id: 'chiangmai',
+                regionKey: 'north',
+                regionName: 'ภาคเหนือ',
+                nameTH: 'เชียงใหม่',
+                nameEN: 'Chiang Mai',
+                slogan: 'ดอยสุเทพเป็นศรี ประเพณีงดงาม บุปผาชาติงามสะพรั่ง นครแห่งชีวิตที่ประทับใจ',
+                heroImage: 'images/chiangmai-hero.jpg',
+                overview: 'เมืองศูนย์กลางแห่งล้านนา โอบล้อมด้วยขุนเขาและหมอกเย็น มีวัดวาอารามเก่าแก่อันทรงคุณค่า คาเฟ่สุดชิค และวิถีชีวิตสโลว์ไลฟ์ที่ผสมผสานระหว่างประเพณีดั้งเดิมกับความทันสมัยได้อย่างลงตัว',
+                tips: 'ช่วงน่าเที่ยวคือเดือนพฤศจิกายน - กุมภาพันธ์ สัมผัสอากาศหนาวบนดอยอินทนนท์ และประเพณียี่เป็งโคมลอย',
+                attractions: [
+                    { name: 'วัดพระธาตุดอยสุเทพราชวรวิหาร', type: 'สายบุญ & วิวเมืองเชียงใหม่', img: 'https://blog.bangkokair.com/wp-content/uploads/2025/10/03_wat-phra-that-doi-suthep-travel-guide.jpg' },
+                    { name: 'ประตูท่าแพ & ถนนคนเดิน', type: 'แลนด์มาร์กถ่ายภาพ & ช้อปปิ้ง', img: 'https://asset.readme.me/files/42241/cover.jpg?v=27ed56cb' },
+                    { name: 'ยอดดอยอินทนนท์', type: 'ธรรมชาติ & จุดสูงสุดในไทย', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSB36eZF-zlnud4nOaEgFJivBYV8MsL8w8GMGVdjVGy1twuG1IlRePULhs&s=10' }
+                ],
+                food: [
+                    { name: 'ข้าวซอยไก่แม่สาย', detail: 'น้ำแกงเข้มข้น หอมเครื่องแกงล้านนาแท้', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-dijz4h8kpHy9RKu2vLfaGNZ0nVOJqxUwA--w-4T7uvl36Dvcos0PdRM&s=10' },
+                    { name: 'ไส้อั่ว & น้ำพริกอ่อง', detail: 'ทานคู่กับแคบหมูกรอบๆ และผักสดท้องถิ่น', img: 'https://assets.unileversolutions.com/recipes-v2/157653.png' },
+                    { name: 'ขนมจีนน้ำเงี้ยว', detail: 'รสชาติกลมกล่อม หอมดอกงิ้วและมะเขือส้ม', img: 'https://img.wongnai.com/p/1920x0/2018/04/11/fec5131bdcc74dc6bcfeba32f02878b1.jpg' }
+                ],
+                stay: [
+                    { name: 'Veranda High Resort', detail: 'รีสอร์ตหรูวิวภูเขาและแปลงชาขั้นบันได', price: '฿3,500 / คืน' },
+                    { name: 'โรงแรมศิริปันนา วิลล่า', detail: 'ที่พักสไตล์ล้านนา บรรยากาศอบอุ่นกลางเมือง', price: '฿2,200 / คืน' },
+                    { name: 'โฮมสเตย์แม่กำปอง', detail: 'สัมผัสวิถีชีวิตชุมชนท่ามกลางลำธารธรรมชาติ', price: '฿800 / คืน' }
+                ]
+            },
+            {
+                id: 'loei',
+                regionKey: 'isan',
+                regionName: 'ภาคตะวันออกเฉียงเหนือ',
+                nameTH: 'เลย',
+                nameEN: 'Loei',
+                slogan: 'เมืองแห่งทะเลภูเขา สุดหนาวในสยาม ดอกไม้งามสามฤดู',
+                heroImage: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80',
+                overview: 'จังหวัดชายแดนอีสานเหนือที่มีภูมิประเทศเป็นภูเขาสลับซับซ้อน อากาศหนาวเย็นตลอดปี เป็นที่ตั้งของภูกระดึงอันเป็นตำนาน และเชียงคาน เมืองโบราณริมฝั่งแม่น้ำโขงสุดคลาสสิก',
+                tips: 'ตื่นเช้ามาตักบาตรข้าวเหนียวที่ถนนคนเดินเชียงคาน และชมทะเลหมอกที่ผานกแอ่นภูกระดึง หรือภูทอก',
+                attractions: [
+                    { name: 'ถนนคนเดินเชียงคาน', type: 'วิถีชีวิตเรือนไม้ริมโขง', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7nIqp37Dl6jWmRDK5RztKaS_VTSV0BjAHcA6wlKE12g9l5XSzE3g8jFE&s=10' },
+                    { name: 'อุทยานแห่งชาติภูกระดึง', type: 'เดินป่าพิชิตยอดเขา & ผาหล่มสัก', img: 'https://cbtthailand.dasta.or.th/upload-file-api/Resources/RelateAttraction/Images/RAT420201/1.jpeg' },
+                    { name: 'อุทยานแห่งชาติภูเรือ', type: 'สัมผัสอากาศหนาว & พระธาตุศรีสองรัก', img: 'https://s.isanook.com/tr/0/ud/283/1417549/ikoil.jpg' }
+                ],
+                food: [
+                    { name: 'ตำกระต่าย (ส้มตำเลย)', detail: 'รสชาติแซ่บนัว ปลาร้าหอมเข้มข้นสไตล์อีสาน', img: 'https://f.ptcdn.info/311/082/000/s41oshjzvoFGpNfMaRrC-o.jpg' },
+                    { name: 'กุ้งฝอยทอดมะพร้าวอ่อน', detail: 'เมนูเด็ดริมแม่น้ำโขง กรอบมันกลมกล่อม', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhPcwokq5OouBq19CJ20clIRmaMRpr2q5EASgbg6pjvozYbIPMf3YQFwg&s=100' },
+                    { name: 'ข้าวปุ้นน้ำแจ่ว', detail: 'ขนมจีนน้ำซุปต้มแซ่บเครื่องในหมู เอกลักษณ์เชียงคาน', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTYS2ieVJ8S7c-vueSzZgMIYEvuQzfvVxwIlLGhRZo7MYCRhfhynARp7Q&s=10' }
+                ],
+                stay: [
+                    { name: 'เชียงคาน ริเวอร์ เม้าท์เทน', detail: 'รีสอร์ตวิวแม่น้ำโขงพาโนรามา บรรยากาศเงียบสงบ', price: '฿2,500 / คืน' },
+                    { name: 'บ้านเรือนไม้โบราณ เชียงคาน', detail: 'โฮมสเตย์เรือนไม้ติดถนนคนเดิน ได้บรรยากาศวินเทจ', price: '฿1,200 / คืน' },
+                    { name: 'ภูเรือ รีสอร์ต', detail: 'ที่พักกลางอ้อมกอดธรรมชาติและแปลงดอกไม้', price: '฿1,800 / คืน' }
+                ]
+            },
+            {
+                id: 'ayutthaya',
+                regionKey: 'central',
+                regionName: 'ภาคกลาง',
+                nameTH: 'พระนครศรีอยุธยา',
+                nameEN: 'Phra Nakhon Si Ayutthaya',
+                slogan: 'ราชธานีเก่า อู่ข้าวอู่น้ำ ถวิลหาอดีต มรดกโลกทรงคุณค่า',
+                heroImage: 'https://images.unsplash.com/photo-1563492065599-3520f775eeed?auto=format&fit=crop&w=1200&q=80',
+                overview: 'อดีตราชธานีไทยที่ได้รับการยกย่องเป็นเมืองมรดกโลกโดย UNESCO โดดเด่นด้วยโบราณสถานอันเกรียงไกร วัดวาอารามริมแม่น้ำป่าสักและแม่น้ำเจ้าพระยา เหมาะแก่การแต่งชุดไทยตามรอยประวัติศาสตร์',
+                tips: 'เช่าจักรยานชมอุทยานประวัติศาสตร์ยามเย็น และนั่งเรือล่องแม่น้ำชมไฟวัดตอนกลางคืน',
+                attractions: [
+                    { name: 'วัดมหาธาตุ (เศียรพระในรากไม้)', type: 'มรดกโลก UNESCO', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE6jR94P7cttFoI3bdFPOdxVv-imujBXPjO9hJ6p07myJlaSQQbY0Uj1g&s=10' },
+                    { name: 'วัดไชยวัฒนาราม', type: 'แต่งชุดไทยถ่ายรูปริมแม่น้ำ', img: 'https://www.silpa-mag.com/wp-content/uploads/2018/03/28685166_1449651885145570_1143307106645625860_n.jpg' },
+                    { name: 'ตลาดน้ำอโยธยา', type: 'วิถีไทย & อาหารโบราณ', img: 'https://cms.dmpcdn.com/travel/2019/06/14/602eb5d7-b18f-4c6a-ae72-42b0988cf210_original.JPG' }
+                ],
+                food: [
+                    { name: 'กุ้งแม่น้ำเผาตัวโต', detail: 'มันกุ้งเยิ้มๆ น้ำจิ้มซีฟู้ดแซ่บเวอร์ ตลาดกลางเกษตรฯ', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScsxU_EHkzi7Px9yyasPw5pHc24bEWSObNcNbq55EVGFHRB0Q8hs-ZUXJO&s=10' },
+                    { name: 'โรตีสายไหมหน้าวัดใหญ่', detail: 'แป้งเหนียวนุ่ม สายไหมหอมหวานละมุนลิ้น', img: 'https://img.wongnai.com/p/1920x0/2023/07/16/08f71e7e49f44c818332d9341c11f68f.jpg' },
+                    { name: 'ก๋วยเตี๋ยวเรืออยุธยา', detail: 'เข้มข้นถึงเครื่องโดยไม่ต้องปรุงเพิ่ม', img: 'https://cms.dmpcdn.com/food/2024/08/17/82b7ef50-5c56-11ef-b45d-0d5ae6857d48_webp_original.webp' }
+                ],
+                stay: [
+                    { name: 'Sala Ayutthaya', detail: 'บูทีคโฮเทลสุดหรูวิวตรงข้ามวัดพุทไธศวรรย์', price: '฿4,500 / คืน' },
+                    { name: 'ศาลาขุนทิพย์ บูทีค', detail: 'บ้านเรือนไทยติดแม่น้ำ บรรยากาศร่มรื่น', price: '฿1,800 / คืน' },
+                    { name: 'อโยธยา ริเวอร์ไซด์', detail: 'ที่พักเดินทางสะดวก ใกล้สถานีรถไฟอยุธยา', price: '฿1,200 / คืน' }
+                ]
+            },
+            {
+                id: 'trat',
+                regionKey: 'east',
+                regionName: 'ภาคตะวันออก',
+                nameTH: 'ตราด',
+                nameEN: 'Trat',
+                slogan: 'เมืองเกาะกูด เกาะช้าง หาดทรายขาว ทะเลใส มรดกประวัติศาสตร์',
+                heroImage: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
+                overview: 'จังหวัดชายทะเลตะวันออกสุดของไทย สวรรค์ของคนรักทะเลและหมู่เกาะ โดดเด่นด้วยเกาะช้าง เกาะกูด และเกาะหมาก น้ำทะเลสีมรกตใสปนทรายนุ่มละเอียด สมคำล่ำลืออันดามันแห่งอ่าวไทย',
+                tips: 'เที่ยวช่วงพฤศจิกายน - พฤษภาคม คลื่นลมสงบ เหมาะแก่การดำน้ำดูดอนรังและพายคายัค',
+                attractions: [
+                    { name: 'เกาะช้าง (Koh Chang)', type: 'เกาะใหญ่ & หาดทรายขาว', img: 'https://www.kkday.com/th/blog/wp-content/uploads/Ko-Chang-Thailand.jpg' },
+                    { name: 'เกาะกูด (Koh Kood)', type: 'น้ำทะเลใสระดับพรีเมียม', img: 'https://d37z30911a54ce.cloudfront.net/uploads/content/island/feature-image/boonsiriferry-booking-bus-and-ferry-to-koh-kood-koh-mak-koh-chang16101194506260.jpg' },
+                    { name: 'เกาะหมาก (Koh Mak)', type: 'เกาะโลว์คาร์บอน สโลว์ไลฟ์', img: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/98/ea/a8/img-20181130-211815-368.jpg?w=1000&h=-1&s=1' }
+                ],
+                food: [
+                    { name: 'ข้าวคลุกพริกเกลือตราด', detail: 'ข้าวคลุกน้ำจิ้มซีฟู้ดรสจัดจ้าน ท็อปปิ้งอาหารทะเลสด', img: 'https://www.ilovekohmak.com/images/column_1481614593/20161202_224027.jpg' },
+                    { name: 'ก๋วยเตี๋ยวหมูเลียง - เนื้อเลียง', detail: 'ใส่น้ำซุปสมุนไพรเร่วหอม เอกลักษณ์เมืองตราด', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE9-y_PTXQgTMrtSOQU__8lioUFOfJ7iUDO0dI4CCoouziOwBEdye5MSB1&s=10' },
+                    { name: 'ปูม้าต้ม & หอยเชลล์เผา', detail: 'อาหารทะเลสดใหม่จากสะพานปลาอ่าวช่อ', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh6Lzcd_OZVNC32ybl8KFzrqBVMxVRXSgzZR4MOXovY7YNgG7KBaK5X6g&s=10' }
+                ],
+                stay: [
+                    { name: 'High Season Pool Villa เกาะกูด', detail: 'พูลวิลล่าหรูหราระดับ 5 ดาว ติดหาดทรายคลองเจ้า', price: '฿8,500 / คืน' },
+                    { name: 'KC Grande Resort เกาะช้าง', detail: 'รีสอร์ทติดหาดทรายขาว สระว่ายน้ำอินฟินิตี้', price: '฿3,200 / คืน' },
+                    { name: 'Maka Thanee Resort เกาะหมาก', detail: 'ที่พักสไตล์บังกะโลริมทะเล บรรยากาศเป็นกันเอง', price: '฿1,800 / คืน' }
+                ]
+            },
+            {
+                id: 'kanchanaburi',
+                regionKey: 'west',
+                regionName: 'ภาคตะวันตก',
+                nameTH: 'กาญจนบุรี',
+                nameEN: 'Kanchanaburi',
+                slogan: 'แคว้นโบราณ ด่านเจดีย์ มณีเมืองกาญจน์ สะพานข้ามแม่น้ำแคว แหล่งนี้น้ำตกสวย',
+                heroImage: 'images/kanchanaburi-hero.jpg',
+                overview: 'ดินแดนแห่งประวัติศาสตร์สงครามโลกครั้งที่ 2 และธรรมชาติป่าเขาผืนใหญ่ โดดเด่นด้วยการนอนแพริมแม่น้ำแควน้อย-แควยอดฮิต น้ำตกเอราวัณ 7 ชั้น และสะพานมอญสังขละบุรี',
+                tips: 'นั่งทางรถไฟสายสายมรณะ ถ้ำกระแซ ชมสายน้ำแคว และเช่าแพเปียกล่องแม่น้ำเพื่อคลายร้อน',
+                attractions: [
+                    { name: 'สะพานข้ามแม่น้ำแคว', type: 'ประวัติศาสตร์สงครามโลก', img: 'https://www.gooutthailand.com/wp-content/uploads/2021/01/river-kwai-bridge-1-750x550.jpg' },
+                    { name: 'น้ำตกเอราวัณ', type: 'น้ำตก 7 ชั้น สีฟ้ามรกต', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNQReA8cgL4fHaXRApDdtVWLWqgkkznneR4KtV8dUr3s4g5z9jFpZ24T4&s=10' },
+                    { name: 'สะพานมอญ สังขละบุรี', type: 'วิถีชีวิตไทย-มอญริมน้ำ', img: 'https://img.kapook.com/u/panadda/t4.jpg' }
+                ],
+                food: [
+                    { name: 'แกงป่าเมืองกาญจน์', detail: 'รสชาติเผ็ดร้อน หอมสมุนไพรกระชายและพริกไทยอ่อน', img: 'https://f.tpkcdn.com/review-source/6d43a634-763c-4605-52fd-5476e93134c6.JPG' },
+                    { name: 'ปลาคังลวกจิ้ม', detail: 'ปลาคังสดๆ จากเขื่อนศรีนครินทร์ เนื้อหวานไม่คาว', img: 'https://img.wongnai.com/p/1920x0/2018/08/26/abe25b4d95ce4e34833f1956c03815b7.jpg' },
+                    { name: 'ขนมทองโยะสังขละบุรี', detail: 'ขนมพื้นบ้านสไตล์มอญ หวานมันหอมอร่อย', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBsL-jyu5dE3Zxk2EmTZZlv9m1gcqqdhTn0uS2dQ0YTe-n2oXsOiiG9q9U&s=10' }
+                ],
+                stay: [
+                    { name: 'Z9 Resort', detail: 'แพพักสไตล์ลอยน้ำสุดล้ำบนเขื่อนศรีนครินทร์', price: '฿4,200 / คืน' },
+                    { name: 'The FloatHouse River Kwai', detail: 'บูทีควิลล่าแพลอยน้ำหรูหรากลางแม่น้ำแควน้อย', price: '฿3,800 / คืน' },
+                    { name: 'สามประสาน สังขละบุรี', detail: 'ที่พักวิวสะพานมอญ บรรยากาศสุดคลาสสิก', price: '฿1,500 / คืน' }
+                ]
+            },
+            {
+                id: 'krabi',
+                regionKey: 'south',
+                regionName: 'ภาคใต้',
+                nameTH: 'กระบี่',
+                nameEN: 'Krabi',
+                slogan: 'กระบี่เมืองน่าอยู่ ผู้คนน่ารัก หาดทรายขาว น้ำใส เกาะสวรรค์แห่งอันดามัน',
+                heroImage: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1200&q=80',
+                overview: 'มงกุฎแห่งทะเลอันดามัน อุดมไปด้วยเขาหินปูนรูปทรงแปลกตา ชายหาดไร่เลย์ ถ้ำพระนาง และหมู่เกาะพีพีอันเลื่องชื่อระดับโลก เหมาะสำหรับทั้งคนรักทะเล และนักปีนผา',
+                tips: 'นั่งเรือหางยาวเที่ยว 4 เกาะ (เกาะไก่ เกาะปอดะ ทะเลแหวก และอ่าวไร่เลย์) ช่วงเช้าคลื่นราบเรียบ',
+                attractions: [
+                    { name: 'ทะเลแหวก & เกาะปอดะ', type: 'Unseen Thailand มหัศจรรย์สันทราย', img: 'https://travelxpress.co.th/wp-content/uploads/4island-14-1-jpg.webp' },
+                    { name: 'หาดไร่เลย์ (Railay Beach)', type: 'ปีนผา & ชมพระอาทิตย์ตกดิน', img: 'https://s359.kapook.com/pagebuilder/9d8242cd-e5d3-473a-a4ce-a340f3207675.jpg' },
+                    { name: 'สระมรกต & น้ำตกร้อน', type: 'บ่อน้ำพุร้อนธรรมชาติกลางป่า', img: 'https://trip-attractive.com/wp-content/uploads/2017/04/hotwaterfall-emerald-pool-wat-tham-seu-krabi.jpg' }
+                ],
+                food: [
+                    { name: 'แกงส้มใต้ปลาเก๋าออดิบ', detail: 'รสชาติเปรี้ยวเผ็ดจัดจ้านสไตล์ใต้แท้ๆ', img: 'https://cms.dmpcdn.com/ugcarticle/2020/04/09/ee0692c0-3de7-11eb-80e3-2fbf2839b261_original.jpg' },
+                    { name: 'หอยชักตีนลวกจิ้ม', detail: 'อาหารทะเลขึ้นชื่อเมืองกระบี่ จิ้มน้ำจิ้มซีฟู้ดส้ม', img: 'https://img.wongnai.com/p/400x0/2019/07/23/a02142b7ebfb4705ad2a0ba721c24e9a.jpg' },
+                    { name: 'โรตีหน้าเมืองกระบี่', detail: 'โรตีกรอบนุ่ม ทานคู่ชาชักใต้รสชาติเข้มข้น', img: 'https://api.tourismthailand.org/upload/live/business_content_thumbnail/14878/P08013842.jpeg' }
+                ],
+                stay: [
+                    { name: 'Rayavadee Resort', detail: 'รีสอร์ตหรูระดับท็อปซ่อนตัวท่ามกลางธรรมชาติไร่เลย์', price: '฿12,000 / คืน' },
+                    { name: 'Aonang Villa Resort', detail: 'ติดชายหาดอ่าวนาง เดินทางสะดวก วิวเขาหินปูน', price: '฿2,800 / คืน' },
+                    { name: 'Banyan Tree Krabi', detail: 'พูลวิลล่าวิวทะเลอันดามันสุดโรแมนติก หาดทับแขก', price: '฿9,500 / คืน' }
+                ]
+            }
+        ];
+
+        let currentProvinces = [...provincesData];
+        let currentRegionFilter = 'all';
+
+        // Window Load Initialization
+        window.onload = function () {
+            renderProvinceCards(currentProvinces);
+            setupThemeToggle();
+            setupMobileMenu();
+        };
+
+        function renderProvinceCards(data) {
+            const grid = document.getElementById('provinceGrid');
+            const resultCount = document.getElementById('resultCount');
+            grid.innerHTML = '';
+
+            resultCount.textContent = `แสดง ${data.length} จาก 6 จังหวัด`;
+
+            if (data.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-12 glass-card rounded-3xl">
+                        <i class="fa-solid fa-compass text-5xl text-purple-300 dark:text-slate-700 mb-3"></i>
+                        <p class="text-slate-600 dark:text-slate-400 font-medium text-sm">ไม่พบจังหวัดหรือสถานที่ที่ตรงกับการค้นหา</p>
+                    </div>
+                `;
+                return;
+            }
+
+            data.forEach(item => {
+                const card = document.createElement('div');
+                card.className = "glass-card rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300 flex flex-col group border border-white/90 dark:border-slate-700/80";
+                card.innerHTML = `
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="${item.heroImage}" alt="${item.nameTH}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='https://placehold.co/800x600/FFE0B2/3A3859?text=${encodeURIComponent(item.nameTH)}'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
+                        <span class="absolute top-4 left-4 bg-pastel-pink text-purple-900 text-xs font-extrabold px-3 py-1 rounded-xl uppercase shadow-md">
+                            ${item.regionName}
+                        </span>
+                        <div class="absolute bottom-4 left-4 right-4 text-white">
+                            <h3 class="text-2xl font-black">${item.nameTH}</h3>
+                            <p class="text-xs text-pink-100 font-light">${item.nameEN}</p>
+                        </div>
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+                        <p class="text-xs text-slate-600 dark:text-slate-300 line-clamp-2 italic font-normal">
+                            "${item.slogan}"
+                        </p>
+                        
+                        <!-- Highlights Preview -->
+                        <div class="space-y-2 pt-3 border-t border-purple-100 dark:border-slate-700/60 text-xs">
+                            <div class="flex items-center text-slate-700 dark:text-slate-300">
+                                <i class="fa-solid fa-location-dot w-5 text-pink-500"></i>
+                                <span class="truncate"><strong>เที่ยว:</strong> ${item.attractions[0].name}</span>
+                            </div>
+                            <div class="flex items-center text-slate-700 dark:text-slate-300">
+                                <i class="fa-solid fa-utensils w-5 text-purple-500"></i>
+                                <span class="truncate"><strong>กิน:</strong> ${item.food[0].name}</span>
+                            </div>
+                            <div class="flex items-center text-slate-700 dark:text-slate-300">
+                                <i class="fa-solid fa-bed w-5 text-teal-500"></i>
+                                <span class="truncate"><strong>นอน:</strong> ${item.stay[0].name}</span>
+                            </div>
+                        </div>
+
+                        <button onclick="openModal('${item.id}')" class="w-full mt-2 bg-gradient-to-r from-pastel-pink via-pastel-lavender to-pastel-sky hover:opacity-95 text-purple-900 font-extrabold py-2.5 rounded-2xl text-xs transition duration-200 shadow-sm flex items-center justify-center gap-2">
+                            รายละเอียด เที่ยว/กิน/นอน <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterRegion(regionKey) {
+            currentRegionFilter = regionKey;
+            
+            const buttons = document.querySelectorAll('.region-filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active', 'bg-white', 'dark:bg-slate-800', 'text-purple-700', 'dark:text-purple-300', 'font-bold', 'shadow-md');
+            });
+            event.currentTarget.classList.add('active', 'bg-white', 'dark:bg-slate-800', 'text-purple-700', 'dark:text-purple-300', 'font-bold', 'shadow-md');
+
+            applyFilters();
+        }
+
+        function handleSearch() {
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+
+            let filtered = provincesData.filter(item => {
+                const matchesRegion = (currentRegionFilter === 'all') || (item.regionKey === currentRegionFilter);
+                
+                const matchesSearch = 
+                    item.nameTH.toLowerCase().includes(searchTerm) ||
+                    item.nameEN.toLowerCase().includes(searchTerm) ||
+                    item.overview.toLowerCase().includes(searchTerm) ||
+                    item.attractions.some(a => a.name.toLowerCase().includes(searchTerm)) ||
+                    item.food.some(f => f.name.toLowerCase().includes(searchTerm));
+
+                return matchesRegion && matchesSearch;
+            });
+
+            renderProvinceCards(filtered);
+        }
+
+        function openModal(id) {
+            const data = provincesData.find(p => p.id === id);
+            if (!data) return;
+
+            document.getElementById('modalImg').src = data.heroImage;
+            document.getElementById('modalRegion').textContent = data.regionName;
+            document.getElementById('modalTitle').textContent = data.nameTH + ' (' + data.nameEN + ')';
+            document.getElementById('modalSlogan').textContent = '"' + data.slogan + '"';
+            document.getElementById('modalOverview').textContent = data.overview;
+            document.getElementById('modalTips').textContent = data.tips;
+
+            renderModalTabs(data);
+            switchModalTab('attractions');
+
+            document.getElementById('detailModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('detailModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function renderModalTabs(data) {
+            // Attractions Content
+            const attContainer = document.getElementById('content-attractions');
+            attContainer.innerHTML = data.attractions.map(a => `
+                <div class="bg-white/80 dark:bg-slate-800 rounded-2xl overflow-hidden border border-purple-100 dark:border-slate-700 shadow-sm flex flex-col justify-between">
+                    <img src="${a.img}" class="w-full h-32 object-cover" onerror="this.src='https://placehold.co/500x300/FFE0B2/3A3859?text=${encodeURIComponent(a.name)}'">
+                    <div class="p-3">
+                        <h4 class="font-bold text-xs text-slate-800 dark:text-white">${a.name}</h4>
+                        <span class="text-[10px] font-semibold text-pink-600 dark:text-pink-300 block mt-1"><i class="fa-solid fa-tag mr-1"></i>${a.type}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            // Food Content
+            const foodContainer = document.getElementById('content-food');
+            foodContainer.innerHTML = data.food.map(f => `
+                <div class="bg-white/80 dark:bg-slate-800 rounded-2xl overflow-hidden border border-purple-100 dark:border-slate-700 shadow-sm flex flex-col justify-between">
+                    <img src="${f.img}" class="w-full h-32 object-cover" onerror="this.src='https://placehold.co/500x300/F8BBD0/3A3859?text=${encodeURIComponent(f.name)}'">
+                    <div class="p-3">
+                        <h4 class="font-bold text-xs text-slate-800 dark:text-white">${f.name}</h4>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1 leading-snug">${f.detail}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            // Stay Content
+            const stayContainer = document.getElementById('content-stay');
+            stayContainer.innerHTML = data.stay.map(s => `
+                <div class="bg-white/80 dark:bg-slate-800 rounded-2xl p-4 border border-purple-100 dark:border-slate-700 flex flex-col justify-between shadow-sm">
+                    <div>
+                        <h4 class="font-bold text-xs sm:text-sm text-slate-800 dark:text-white">${s.name}</h4>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">${s.detail}</p>
+                    </div>
+                    <span class="text-xs font-extrabold text-teal-600 dark:text-teal-300 mt-3 block">${s.price}</span>
+                </div>
+            `).join('');
+        }
+
+        function switchModalTab(tabName) {
+            const tabs = ['attractions', 'food', 'stay'];
+            tabs.forEach(t => {
+                const btn = document.getElementById(`tab-${t}`);
+                const content = document.getElementById(`content-${t}`);
+                if (t === tabName) {
+                    btn.className = "tab-btn pb-3 tab-active transition flex items-center gap-2";
+                    content.classList.remove('hidden');
+                } else {
+                    btn.className = "tab-btn pb-3 text-slate-500 dark:text-slate-400 transition flex items-center gap-2";
+                    content.classList.add('hidden');
+                }
+            });
+        }
+
+        function setupThemeToggle() {
+            const toggle = document.getElementById('themeToggle');
+            toggle.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+            });
+        }
+
+        function setupMobileMenu() {
+            const btn = document.getElementById('mobileMenuBtn');
+            const menu = document.getElementById('mobileMenu');
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+        }
+    </script>
+</body>
+</html>
